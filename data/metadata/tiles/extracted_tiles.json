@@ -1,0 +1,821 @@
+{
+  "schema_version": "1.0",
+  "statistics": {
+    "extracted_count": 45,
+    "rejected_count": 0,
+    "total_count": 45
+  },
+  "tiles": [
+    {
+      "tile_id": 0,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 224,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.851264,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y000224.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 157.5258,
+        "std_intensity": 61.0242,
+        "tissue_ratio": 0.851264
+      }
+    },
+    {
+      "tile_id": 1,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 224,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.675801,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y000224.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 169.1731,
+        "std_intensity": 64.0651,
+        "tissue_ratio": 0.675801
+      }
+    },
+    {
+      "tile_id": 2,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 448,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.605927,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y000448.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 181.8096,
+        "std_intensity": 59.979,
+        "tissue_ratio": 0.605927
+      }
+    },
+    {
+      "tile_id": 3,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 448,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.528819,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y000448.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 183.0886,
+        "std_intensity": 69.7823,
+        "tissue_ratio": 0.528819
+      }
+    },
+    {
+      "tile_id": 4,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 672,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.757095,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y000672.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 161.4623,
+        "std_intensity": 63.7951,
+        "tissue_ratio": 0.757095
+      }
+    },
+    {
+      "tile_id": 5,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 672,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.978197,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y000672.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 97.8223,
+        "std_intensity": 46.1239,
+        "tissue_ratio": 0.978197
+      }
+    },
+    {
+      "tile_id": 6,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 672,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.834722,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y000672.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 123.4217,
+        "std_intensity": 69.8731,
+        "tissue_ratio": 0.834722
+      }
+    },
+    {
+      "tile_id": 7,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 896,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.907725,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y000896.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 139.9582,
+        "std_intensity": 59.0114,
+        "tissue_ratio": 0.907725
+      }
+    },
+    {
+      "tile_id": 8,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 896,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 1.0,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y000896.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 100.9528,
+        "std_intensity": 33.8362,
+        "tissue_ratio": 1.0
+      }
+    },
+    {
+      "tile_id": 9,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 896,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 1.0,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y000896.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 70.418,
+        "std_intensity": 39.6933,
+        "tissue_ratio": 1.0
+      }
+    },
+    {
+      "tile_id": 10,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 1120,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.974191,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y001120.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 149.5178,
+        "std_intensity": 55.6791,
+        "tissue_ratio": 0.974191
+      }
+    },
+    {
+      "tile_id": 11,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 1120,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.974589,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y001120.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 100.9717,
+        "std_intensity": 57.341,
+        "tissue_ratio": 0.974589
+      }
+    },
+    {
+      "tile_id": 12,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 1120,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.800622,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y001120.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 124.0361,
+        "std_intensity": 80.4848,
+        "tissue_ratio": 0.800622
+      }
+    },
+    {
+      "tile_id": 13,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 1344,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.989756,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y001344.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 137.0291,
+        "std_intensity": 54.9788,
+        "tissue_ratio": 0.989756
+      }
+    },
+    {
+      "tile_id": 14,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 1344,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.783123,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y001344.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 129.3318,
+        "std_intensity": 77.3824,
+        "tissue_ratio": 0.783123
+      }
+    },
+    {
+      "tile_id": 15,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 1344,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.670978,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y001344.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 167.4839,
+        "std_intensity": 76.5365,
+        "tissue_ratio": 0.670978
+      }
+    },
+    {
+      "tile_id": 16,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1568,
+      "y": 1344,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.637357,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001568_Y001344.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 134.4177,
+        "std_intensity": 91.2767,
+        "tissue_ratio": 0.637357
+      }
+    },
+    {
+      "tile_id": 17,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 1568,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.990912,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y001568.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 128.0199,
+        "std_intensity": 60.5662,
+        "tissue_ratio": 0.990912
+      }
+    },
+    {
+      "tile_id": 18,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 1568,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.846022,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y001568.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 110.6215,
+        "std_intensity": 73.0588,
+        "tissue_ratio": 0.846022
+      }
+    },
+    {
+      "tile_id": 19,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 1568,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.728157,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y001568.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 137.52,
+        "std_intensity": 82.006,
+        "tissue_ratio": 0.728157
+      }
+    },
+    {
+      "tile_id": 20,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 1792,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.957828,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y001792.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 133.7007,
+        "std_intensity": 60.9131,
+        "tissue_ratio": 0.957828
+      }
+    },
+    {
+      "tile_id": 21,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 1792,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.989377,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y001792.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 95.3406,
+        "std_intensity": 37.4373,
+        "tissue_ratio": 0.989377
+      }
+    },
+    {
+      "tile_id": 22,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 1792,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.803033,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y001792.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 137.9386,
+        "std_intensity": 68.5213,
+        "tissue_ratio": 0.803033
+      }
+    },
+    {
+      "tile_id": 23,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1568,
+      "y": 1792,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.564413,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001568_Y001792.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 183.798,
+        "std_intensity": 65.8083,
+        "tissue_ratio": 0.564413
+      }
+    },
+    {
+      "tile_id": 24,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 672,
+      "y": 2016,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.697525,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000672_Y002016.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 166.0683,
+        "std_intensity": 64.5023,
+        "tissue_ratio": 0.697525
+      }
+    },
+    {
+      "tile_id": 25,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 2016,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.962911,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y002016.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 142.6673,
+        "std_intensity": 59.6667,
+        "tissue_ratio": 0.962911
+      }
+    },
+    {
+      "tile_id": 26,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 2016,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 1.0,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y002016.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 95.467,
+        "std_intensity": 42.7791,
+        "tissue_ratio": 1.0
+      }
+    },
+    {
+      "tile_id": 27,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 2016,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.790856,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y002016.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 155.989,
+        "std_intensity": 62.7864,
+        "tissue_ratio": 0.790856
+      }
+    },
+    {
+      "tile_id": 28,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1568,
+      "y": 2016,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.874263,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001568_Y002016.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 156.0011,
+        "std_intensity": 58.4134,
+        "tissue_ratio": 0.874263
+      }
+    },
+    {
+      "tile_id": 29,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 672,
+      "y": 2240,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.845364,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000672_Y002240.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 155.4099,
+        "std_intensity": 59.4404,
+        "tissue_ratio": 0.845364
+      }
+    },
+    {
+      "tile_id": 30,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 2240,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.971241,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y002240.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 153.6124,
+        "std_intensity": 55.0612,
+        "tissue_ratio": 0.971241
+      }
+    },
+    {
+      "tile_id": 31,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 2240,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.968949,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y002240.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 122.8224,
+        "std_intensity": 49.5912,
+        "tissue_ratio": 0.968949
+      }
+    },
+    {
+      "tile_id": 32,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 2240,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.907207,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y002240.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 156.5201,
+        "std_intensity": 57.462,
+        "tissue_ratio": 0.907207
+      }
+    },
+    {
+      "tile_id": 33,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1568,
+      "y": 2240,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.94886,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001568_Y002240.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 127.7879,
+        "std_intensity": 60.9308,
+        "tissue_ratio": 0.94886
+      }
+    },
+    {
+      "tile_id": 34,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 672,
+      "y": 2464,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 1.0,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000672_Y002464.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 133.1455,
+        "std_intensity": 44.8992,
+        "tissue_ratio": 1.0
+      }
+    },
+    {
+      "tile_id": 35,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 2464,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.995097,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y002464.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 156.0201,
+        "std_intensity": 46.5996,
+        "tissue_ratio": 0.995097
+      }
+    },
+    {
+      "tile_id": 36,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 2464,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.922911,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y002464.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 151.3095,
+        "std_intensity": 54.6208,
+        "tissue_ratio": 0.922911
+      }
+    },
+    {
+      "tile_id": 37,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 2464,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.941865,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y002464.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 156.3382,
+        "std_intensity": 54.6786,
+        "tissue_ratio": 0.941865
+      }
+    },
+    {
+      "tile_id": 38,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1568,
+      "y": 2464,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.861209,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001568_Y002464.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 110.0382,
+        "std_intensity": 66.4156,
+        "tissue_ratio": 0.861209
+      }
+    },
+    {
+      "tile_id": 39,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 448,
+      "y": 2688,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.705796,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000448_Y002688.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 164.509,
+        "std_intensity": 63.3437,
+        "tissue_ratio": 0.705796
+      }
+    },
+    {
+      "tile_id": 40,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 672,
+      "y": 2688,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 1.0,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000672_Y002688.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 137.796,
+        "std_intensity": 45.6252,
+        "tissue_ratio": 1.0
+      }
+    },
+    {
+      "tile_id": 41,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 896,
+      "y": 2688,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.978177,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X000896_Y002688.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 157.9075,
+        "std_intensity": 42.6804,
+        "tissue_ratio": 0.978177
+      }
+    },
+    {
+      "tile_id": 42,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1120,
+      "y": 2688,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.901108,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001120_Y002688.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 161.4765,
+        "std_intensity": 51.4898,
+        "tissue_ratio": 0.901108
+      }
+    },
+    {
+      "tile_id": 43,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1344,
+      "y": 2688,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.95749,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001344_Y002688.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 138.6787,
+        "std_intensity": 55.738,
+        "tissue_ratio": 0.95749
+      }
+    },
+    {
+      "tile_id": 44,
+      "slide_id": "CMU-1-Small-Region",
+      "x": 1568,
+      "y": 2688,
+      "width": 224,
+      "height": 224,
+      "level": 0,
+      "tissue_ratio": 0.67891,
+      "image_path": "data/processed/tiles/CMU-1-Small-Region_L0_X001568_Y002688.png",
+      "qc": {
+        "passed": true,
+        "reason": "valid",
+        "mean_intensity": 140.9126,
+        "std_intensity": 80.5276,
+        "tissue_ratio": 0.67891
+      }
+    }
+  ],
+  "rejected_tiles": []
+}
