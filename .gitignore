@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Large datasets
+data/raw/
+data/processed/
+
+# Model weights
+models/
+
+# Experiment tracking
+mlruns/
+
+# Runtime outputs
+results/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
