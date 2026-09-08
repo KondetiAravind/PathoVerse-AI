@@ -32,3 +32,6 @@ results/
 
 # OS
 .DS_Store
+
+# External third-party repositories
+/external/
