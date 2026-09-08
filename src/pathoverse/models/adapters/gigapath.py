@@ -1,40 +1,33 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Sequence
 
 import torch
 from PIL import Image
+from timm.data import (
+    create_transform,
+    resolve_data_config,
+)
 
 import gigapath.tile_encoder as tile_encoder
-from timm.data import create_transform, resolve_data_config
 
-from pathoverse.models.base import BaseModelAdapter, ModelInfo
+from ..base import BaseModelAdapter, ModelInfo
 
 
-class GigaPathFlashAdapter(BaseModelAdapter):
-    """
-    PathoVerse adapter for the official Prov-GigaPath-Flash
-    pathology tile encoder.
-
-    Model:
-        prov-gigapath/prov-gigapath-flash
-
-    Architecture:
-        gigapath_tile_enc_dinov2s
-
-    Input:
-        224 x 224 RGB
-
-    Output:
-        384-dimensional tile embedding
-    """
+class GigaPathFlashAdapter(
+    BaseModelAdapter
+):
 
     def __init__(
         self,
-        model_id: str = "hf_hub:prov-gigapath/prov-gigapath-flash",
-        device: str = "cuda",
-        batch_size: int = 8,
-    ) -> None:
+        model_id=(
+            "hf_hub:"
+            "prov-gigapath/"
+            "prov-gigapath-flash"
+        ),
+        device="cuda",
+        batch_size=8,
+    ):
 
         super().__init__(
             model_id=model_id,
@@ -42,60 +35,55 @@ class GigaPathFlashAdapter(BaseModelAdapter):
             batch_size=batch_size,
         )
 
-        self.input_size = 224
-        self.embedding_dim = 384
+        self.model = None
         self.transform = None
 
-    # ==============================================================
+        # GigaPath-Flash fixed architecture metadata.
+        self.embedding_dim = 384
+        self.input_size = 224
+
+    # ========================================================
     # LOAD
-    # ==============================================================
+    # ========================================================
 
-    def load(self) -> None:
-        """
-        Load the official GigaPath-Flash tile encoder.
-        """
+    def load(self):
 
-        self.model = tile_encoder.create_model(
-            self.model_id
+        self.model = (
+            tile_encoder.create_model(
+                self.model_id
+            )
         )
 
-        self.model = self.model.to(self.device)
+        self.model = self.model.to(
+            self.device
+        )
+
         self.model.eval()
 
-        # The official GigaPath model exposes its preprocessing
-        # configuration through TIMM's default_cfg.
-        data_config = resolve_data_config(
+        config = resolve_data_config(
             {},
             model=self.model,
         )
 
         self.transform = create_transform(
-            **data_config,
+            **config,
             is_training=False,
         )
 
-    # ==============================================================
+    # ========================================================
     # PREPROCESS
-    # ==============================================================
+    # ========================================================
 
     def preprocess(
         self,
-        images: Iterable[Image.Image],
-    ) -> torch.Tensor:
-        """
-        Convert PIL pathology images into model-ready tensors.
+        images: Sequence[Image.Image],
+    ):
 
-        Returns:
-            Tensor [N, 3, 224, 224]
-        """
+        if self.transform is None:
 
-        self.ensure_loaded()
-
-        images = list(images)
-
-        if not images:
-            raise ValueError(
-                "images cannot be empty"
+            raise RuntimeError(
+                "Model must be loaded before "
+                "preprocessing images."
             )
 
         tensors = []
@@ -106,69 +94,70 @@ class GigaPathFlashAdapter(BaseModelAdapter):
                 image,
                 Image.Image,
             ):
+
                 raise TypeError(
-                    "All inputs must be PIL.Image.Image objects."
+                    "Expected PIL.Image."
                 )
 
-            image = image.convert("RGB")
-
-            tensors.append(
-                self.transform(image)
+            image = image.convert(
+                "RGB"
             )
 
-        return torch.stack(tensors)
+            tensors.append(
+                self.transform(
+                    image
+                )
+            )
 
-    # ==============================================================
+        return torch.stack(
+            tensors
+        )
+
+    # ========================================================
     # ENCODE
-    # ==============================================================
+    # ========================================================
 
     @torch.inference_mode()
     def encode(
         self,
-        images: torch.Tensor,
-    ) -> torch.Tensor:
-        """
-        Generate GigaPath-Flash tile embeddings.
-
-        Args:
-            images:
-                Preprocessed tensor [N, 3, 224, 224].
-
-        Returns:
-            Tensor [N, 384].
-        """
+        images,
+    ):
 
         self.ensure_loaded()
 
-        images = self.to_device(images)
+        tensors = self.preprocess(
+            images
+        ).to(
+            self.device
+        )
 
         embeddings = self.model(
-            images
+            tensors
         )
 
         if embeddings.ndim != 2:
+
             raise RuntimeError(
-                "Unexpected GigaPath embedding shape: "
-                f"{tuple(embeddings.shape)}"
+                f"Expected 2D embeddings, "
+                f"got {embeddings.shape}"
             )
 
         if embeddings.shape[1] != self.embedding_dim:
+
             raise RuntimeError(
-                "Unexpected GigaPath embedding dimension: "
-                f"{embeddings.shape[1]} "
-                f"(expected {self.embedding_dim})"
+                "Unexpected GigaPath-Flash "
+                f"embedding dimension: "
+                f"{embeddings.shape[1]}. "
+                f"Expected {self.embedding_dim}."
             )
 
         return embeddings.float()
 
-    # ==============================================================
+    # ========================================================
     # INFO
-    # ==============================================================
+    # ========================================================
 
-    def info(self) -> ModelInfo:
-        """
-        Return standardized PathoVerse model metadata.
-        """
+    def info(self):
 
         return ModelInfo(
             name="GigaPath-Flash",
@@ -177,7 +166,7 @@ class GigaPathFlashAdapter(BaseModelAdapter):
             input_size=self.input_size,
             modality="histopathology",
             description=(
-                "Prov-GigaPath-Flash pathology tile encoder "
-                "using a DINOv2-Small architecture"
+                "GigaPath-Flash pathology "
+                "tile encoder."
             ),
         )

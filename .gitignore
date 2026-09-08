@@ -22,6 +22,7 @@ data/processed/
 
 # Experiment tracking
 mlruns/
+mlflow.db
 
 # Runtime outputs
 results/
@@ -35,3 +36,9 @@ results/
 
 # External third-party repositories
 /external/
+
+# Generated embedding metadata
+data/metadata/embeddings/
+data/metadata/patchcamelyon/*_embeddings.json
+data/metadata/patchcamelyon/*_embedding_summary.json
+data/metadata/wsi/

@@ -1,31 +1,19 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Sequence
 
 import torch
-import timm
 from PIL import Image
-from timm.data import create_transform, resolve_data_config
+from timm import create_model
+from timm.data import (
+    create_transform,
+    resolve_data_config,
+)
 
-from pathoverse.models.base import BaseModelAdapter, ModelInfo
+from ..base import BaseModelAdapter, ModelInfo
 
 
 class TimmVisionAdapter(BaseModelAdapter):
-    """
-    Generic adapter for TIMM-based vision foundation models.
-
-    Interface:
-        load()
-        preprocess()
-        encode()
-        info()
-
-    Designed for pathology foundation models such as:
-        - GigaPath
-        - GigaPath-Flash
-        - UNI / UNI2
-        - other TIMM-compatible encoders
-    """
 
     def __init__(
         self,
@@ -33,7 +21,7 @@ class TimmVisionAdapter(BaseModelAdapter):
         device: str = "cuda",
         batch_size: int = 8,
         pretrained: bool = True,
-    ) -> None:
+    ):
         super().__init__(
             model_id=model_id,
             device=device,
@@ -41,204 +29,127 @@ class TimmVisionAdapter(BaseModelAdapter):
         )
 
         self.pretrained = pretrained
+
+        self.model = None
         self.transform = None
+
+        # Known metadata for ViT-B/16.
+        # This allows info() to work before load().
+        self.embedding_dim = 768
         self.input_size = 224
-        self.embedding_dim = None
 
-    # ==============================================================
-    # MODEL LOADING
-    # ==============================================================
+    # ========================================================
+    # LOAD
+    # ========================================================
 
-    def load(self) -> None:
-        """
-        Load the TIMM model and construct its preprocessing pipeline.
-        """
+    def load(self):
 
-        self.model = timm.create_model(
+        self.model = create_model(
             self.model_id,
             pretrained=self.pretrained,
             num_classes=0,
         )
 
-        self.model = self.model.to(self.device)
+        self.model = self.model.to(
+            self.device
+        )
+
         self.model.eval()
 
-        # Resolve preprocessing configuration from the model.
-        data_config = resolve_data_config(
+        # Resolve actual model metadata after loading.
+        self.embedding_dim = int(
+            self.model.num_features
+        )
+
+        config = resolve_data_config(
             {},
             model=self.model,
         )
 
         self.transform = create_transform(
-            **data_config,
+            **config,
             is_training=False,
         )
 
-        # Determine embedding dimension.
-        self.embedding_dim = self._get_embedding_dim()
-
-        # Determine expected input size.
-        self.input_size = self._get_input_size()
-
-    # ==============================================================
-    # PREPROCESSING
-    # ==============================================================
+    # ========================================================
+    # PREPROCESS
+    # ========================================================
 
     def preprocess(
         self,
-        images: Iterable[Image.Image],
-    ) -> torch.Tensor:
-        """
-        Convert PIL images into a batched tensor.
+        images: Sequence[Image.Image],
+    ):
 
-        Returns:
-            Tensor of shape [N, 3, H, W].
-        """
+        if self.transform is None:
 
-        self.ensure_loaded()
-
-        images = list(images)
-
-        if not images:
-            raise ValueError("images cannot be empty")
-
-        processed = []
-
-        for image in images:
-            if not isinstance(image, Image.Image):
-                raise TypeError(
-                    "All inputs must be PIL.Image.Image objects."
-                )
-
-            image = image.convert("RGB")
-
-            processed.append(
-                self.transform(image)
+            raise RuntimeError(
+                "Model must be loaded before "
+                "preprocessing images."
             )
 
-        batch = torch.stack(processed)
+        tensors = []
 
-        return batch
+        for image in images:
 
-    # ==============================================================
-    # ENCODING
-    # ==============================================================
+            if not isinstance(
+                image,
+                Image.Image,
+            ):
+
+                raise TypeError(
+                    "Expected PIL.Image."
+                )
+
+            image = image.convert(
+                "RGB"
+            )
+
+            tensors.append(
+                self.transform(
+                    image
+                )
+            )
+
+        return torch.stack(
+            tensors
+        )
+
+    # ========================================================
+    # ENCODE
+    # ========================================================
 
     @torch.inference_mode()
     def encode(
         self,
-        images: torch.Tensor,
-    ) -> torch.Tensor:
-        """
-        Generate image embeddings.
-
-        Args:
-            images:
-                Preprocessed tensor [N, 3, H, W].
-
-        Returns:
-            Float tensor [N, embedding_dim].
-        """
+        images,
+    ):
 
         self.ensure_loaded()
 
-        images = self.to_device(images)
+        tensors = self.preprocess(
+            images
+        ).to(
+            self.device
+        )
 
-        features = self.model.forward_features(images)
+        embeddings = self.model(
+            tensors
+        )
 
-        embeddings = self._pool_features(features)
+        if embeddings.ndim != 2:
+
+            embeddings = embeddings.flatten(
+                start_dim=1
+            )
 
         return embeddings.float()
 
-    # ==============================================================
-    # FEATURE POOLING
-    # ==============================================================
+    # ========================================================
+    # INFO
+    # ========================================================
 
-    def _pool_features(
-        self,
-        features: torch.Tensor,
-    ) -> torch.Tensor:
-        """
-        Convert TIMM feature output into one vector per image.
+    def info(self):
 
-        Supported representations:
-
-        [B, C]
-            Already pooled.
-
-        [B, N, C]
-            Token representation.
-            Uses the first token (CLS/token pooling).
-
-        [B, C, H, W]
-            Spatial feature map.
-            Uses global average pooling.
-        """
-
-        if features.ndim == 2:
-            return features
-
-        if features.ndim == 3:
-            return features[:, 0]
-
-        if features.ndim == 4:
-            return features.mean(
-                dim=(2, 3)
-            )
-
-        raise RuntimeError(
-            "Unsupported TIMM feature shape: "
-            f"{tuple(features.shape)}"
-        )
-
-    # ==============================================================
-    # MODEL METADATA
-    # ==============================================================
-
-    def _get_embedding_dim(self) -> int | None:
-        """
-        Determine the output embedding dimension.
-        """
-
-        if hasattr(self.model, "num_features"):
-            value = self.model.num_features
-
-            if value is not None:
-                return int(value)
-
-        if hasattr(self.model, "embed_dim"):
-            value = self.model.embed_dim
-
-            if value is not None:
-                return int(value)
-
-        return None
-
-    def _get_input_size(self) -> int:
-        """
-        Determine expected model input size.
-        """
-
-        if hasattr(self.model, "patch_embed"):
-
-            patch_embed = self.model.patch_embed
-
-            if hasattr(patch_embed, "img_size"):
-
-                img_size = patch_embed.img_size
-
-                if isinstance(img_size, tuple):
-                    return int(img_size[0])
-
-                return int(img_size)
-
-        return 224
-
-    # ==============================================================
-    # PUBLIC MODEL INFO
-    # ==============================================================
-
-    def info(self) -> ModelInfo:
         return ModelInfo(
             name="ViT-B/16",
             model_id=self.model_id,
@@ -246,7 +157,7 @@ class TimmVisionAdapter(BaseModelAdapter):
             input_size=self.input_size,
             modality="histopathology",
             description=(
-                "Generic ImageNet-pretrained "
-                "Vision Transformer baseline."
+                "ViT-B/16 image foundation "
+                "encoder."
             ),
         )

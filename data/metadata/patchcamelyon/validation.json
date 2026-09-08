@@ -1,0 +1,38 @@
+{
+  "dataset": "patchcamelyon",
+  "valid": true,
+  "status": "valid",
+  "splits": {
+    "train": {
+      "images": 262144,
+      "labels": 262144,
+      "image_shape": [
+        262144,
+        96,
+        96,
+        3
+      ]
+    },
+    "validation": {
+      "images": 32768,
+      "labels": 32768,
+      "image_shape": [
+        32768,
+        96,
+        96,
+        3
+      ]
+    },
+    "test": {
+      "images": 32768,
+      "labels": 32768,
+      "image_shape": [
+        32768,
+        96,
+        96,
+        3
+      ]
+    }
+  },
+  "errors": []
+}
