@@ -7,26 +7,16 @@ from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-# ==========================================================
-# PROJECT ROOT
-# ==========================================================
-
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
-
-
-# ==========================================================
-# APPLICATION SETTINGS
-# ==========================================================
 
 
 class Settings(BaseSettings):
     """
-    Centralized runtime configuration for PathoVerse AI.
-
-    Configuration can be supplied through environment variables
-    or a local .env file.
+    Central application configuration.
 
     Environment variables use the PATHOVERSE_ prefix.
+    Example:
+        PATHOVERSE_PORT=9000
     """
 
     model_config = SettingsConfigDict(
@@ -42,9 +32,7 @@ class Settings(BaseSettings):
     # ------------------------------------------------------
 
     app_name: str = "PathoVerse AI"
-
     app_version: str = "0.4.0"
-
     environment: str = "development"
 
     # ------------------------------------------------------
@@ -52,7 +40,6 @@ class Settings(BaseSettings):
     # ------------------------------------------------------
 
     host: str = "0.0.0.0"
-
     port: int = 8000
 
     # ------------------------------------------------------
@@ -72,26 +59,42 @@ class Settings(BaseSettings):
 
     cors_allow_credentials: bool = True
 
+    cors_allow_methods: str = (
+        "GET,POST,PUT,PATCH,DELETE,OPTIONS"
+    )
+
+    cors_allow_headers: str = "*"
+
     # ------------------------------------------------------
-    # Project Paths
+    # Project directories
     # ------------------------------------------------------
 
     project_root: Path = PROJECT_ROOT
 
     data_root: Path = PROJECT_ROOT / "data"
 
-    raw_root: Path = PROJECT_ROOT / "data" / "raw"
+    raw_root: Path = (
+        PROJECT_ROOT / "data" / "raw"
+    )
 
-    processed_root: Path = PROJECT_ROOT / "data" / "processed"
+    processed_root: Path = (
+        PROJECT_ROOT / "data" / "processed"
+    )
 
-    metadata_root: Path = PROJECT_ROOT / "data" / "metadata"
+    metadata_root: Path = (
+        PROJECT_ROOT / "data" / "metadata"
+    )
 
-    results_root: Path = PROJECT_ROOT / "results"
+    results_root: Path = (
+        PROJECT_ROOT / "results"
+    )
 
-    models_root: Path = PROJECT_ROOT / "models"
+    models_root: Path = (
+        PROJECT_ROOT / "models"
+    )
 
     # ------------------------------------------------------
-    # Validators
+    # Validation
     # ------------------------------------------------------
 
     @field_validator("environment")
@@ -136,34 +139,40 @@ class Settings(BaseSettings):
         return value
 
     # ------------------------------------------------------
-    # Normalized CORS Origins
+    # Parsed configuration helpers
     # ------------------------------------------------------
 
     @property
     def cors_origin_list(self) -> list[str]:
-        """
-        Return configured CORS origins as a normalized list.
-        """
-
         return [
             origin.strip()
             for origin in self.cors_origins.split(",")
             if origin.strip()
         ]
 
+    @property
+    def cors_method_list(self) -> list[str]:
+        return [
+            method.strip().upper()
+            for method in self.cors_allow_methods.split(",")
+            if method.strip()
+        ]
 
-# ==========================================================
-# SETTINGS ACCESSOR
-# ==========================================================
+    @property
+    def cors_header_list(self) -> list[str]:
+        return [
+            header.strip()
+            for header in self.cors_allow_headers.split(",")
+            if header.strip()
+        ]
 
 
 @lru_cache
 def get_settings() -> Settings:
     """
-    Return the cached application settings instance.
+    Return cached application settings.
 
-    Caching ensures that the configuration is created only
-    once during the lifetime of the process.
+    Caching ensures that every module uses the same
+    configuration instance during the application lifecycle.
     """
-
     return Settings()

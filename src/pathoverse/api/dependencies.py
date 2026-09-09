@@ -5,15 +5,13 @@ from pathoverse.config import get_settings
 
 settings = get_settings()
 
-
-PROJECT_ROOT = settings.project_root
-
-DATA_ROOT = settings.data_root
-RAW_ROOT = settings.raw_root
-PROCESSED_ROOT = settings.processed_root
-METADATA_ROOT = settings.metadata_root
-RESULTS_ROOT = settings.results_root
-MODELS_ROOT = settings.models_root
+PROJECT_ROOT: Path = settings.project_root
+DATA_ROOT: Path = settings.data_root
+RAW_ROOT: Path = settings.raw_root
+PROCESSED_ROOT: Path = settings.processed_root
+METADATA_ROOT: Path = settings.metadata_root
+RESULTS_ROOT: Path = settings.results_root
+MODELS_ROOT: Path = settings.models_root
 
 
 def get_project_root() -> Path:
@@ -22,6 +20,10 @@ def get_project_root() -> Path:
 
 def get_data_root() -> Path:
     return DATA_ROOT
+
+
+def get_raw_root() -> Path:
+    return RAW_ROOT
 
 
 def get_processed_root() -> Path:
@@ -34,3 +36,7 @@ def get_metadata_root() -> Path:
 
 def get_results_root() -> Path:
     return RESULTS_ROOT
+
+
+def get_models_root() -> Path:
+    return MODELS_ROOT
