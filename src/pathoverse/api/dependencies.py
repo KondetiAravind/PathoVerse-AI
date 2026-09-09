@@ -1,14 +1,19 @@
 from pathlib import Path
 
+from pathoverse.config import get_settings
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
-DATA_ROOT = PROJECT_ROOT / "data"
-RAW_ROOT = DATA_ROOT / "raw"
-PROCESSED_ROOT = DATA_ROOT / "processed"
-METADATA_ROOT = DATA_ROOT / "metadata"
-RESULTS_ROOT = PROJECT_ROOT / "results"
-MODELS_ROOT = PROJECT_ROOT / "models"
+settings = get_settings()
+
+
+PROJECT_ROOT = settings.project_root
+
+DATA_ROOT = settings.data_root
+RAW_ROOT = settings.raw_root
+PROCESSED_ROOT = settings.processed_root
+METADATA_ROOT = settings.metadata_root
+RESULTS_ROOT = settings.results_root
+MODELS_ROOT = settings.models_root
 
 
 def get_project_root() -> Path:

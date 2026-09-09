@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from pathoverse.config import get_settings
+
 from pathoverse.api.routes import (
     analysis,
     benchmarks,
@@ -11,13 +13,16 @@ from pathoverse.api.routes import (
 )
 
 
+settings = get_settings()
+
+
 app = FastAPI(
-    title="PathoVerse AI",
+    title=settings.app_name,
     description=(
         "Multimodal Foundation Model Platform for "
         "Whole-Slide Pathology Analysis & Evaluation"
     ),
-    version="0.4.0",
+    version=settings.app_version,
     docs_url="/docs",
     redoc_url="/redoc",
 )
@@ -25,11 +30,8 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
-    allow_credentials=True,
+    allow_origins=settings.cors_origin_list,
+    allow_credentials=settings.cors_allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -75,7 +77,7 @@ app.include_router(
 @app.get("/", tags=["Health"])
 def root():
     return {
-        "name": "PathoVerse AI",
-        "version": app.version,
+        "name": settings.app_name,
+        "version": settings.app_version,
         "status": "running",
     }
