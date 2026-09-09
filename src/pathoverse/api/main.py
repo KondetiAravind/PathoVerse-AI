@@ -17,7 +17,7 @@ app = FastAPI(
         "Multimodal Foundation Model Platform for "
         "Whole-Slide Pathology Analysis & Evaluation"
     ),
-    version="0.1.0",
+    version="0.4.0",
     docs_url="/docs",
     redoc_url="/redoc",
 )
