@@ -16,10 +16,6 @@ from pathoverse.benchmark.leaderboard import (
 )
 
 
-# ============================================================
-# PATHS
-# ============================================================
-
 RESULTS_ROOT = Path(
     "results"
 )
@@ -29,12 +25,7 @@ OUTPUT_DIR = Path(
 )
 
 
-# ============================================================
-# SOURCE FILES
-# ============================================================
-
 EFFICIENCY_FILES = [
-
     RESULTS_ROOT
     / "benchmarks"
     / "vit_standard_benchmark.json",
@@ -46,11 +37,10 @@ EFFICIENCY_FILES = [
     RESULTS_ROOT
     / "benchmarks"
     / "conch_standard_benchmark.json",
-
 ]
 
-RETRIEVAL_FILES = [
 
+RETRIEVAL_FILES = [
     RESULTS_ROOT
     / "retrieval"
     / "vit_b_16_retrieval_evaluation.json",
@@ -62,11 +52,10 @@ RETRIEVAL_FILES = [
     RESULTS_ROOT
     / "retrieval"
     / "conch_retrieval_evaluation.json",
-
 ]
 
-CLASSIFICATION_FILES = [
 
+CLASSIFICATION_FILES = [
     RESULTS_ROOT
     / "classification"
     / "vit_b_16_classification.json",
@@ -78,23 +67,21 @@ CLASSIFICATION_FILES = [
     RESULTS_ROOT
     / "classification"
     / "conch_classification.json",
-
 ]
 
-MIL_FILES = [
 
+MIL_FILES = [
     RESULTS_ROOT
     / "mil"
     / "CMU-1-Small-Region_gigapath_flash_mil.json",
-
 ]
 
 
 def add_if_exists(
-    collector,
-    path,
+    collector: BenchmarkCollector,
+    path: Path,
     function,
-):
+) -> None:
 
     if path.exists():
 
@@ -114,8 +101,8 @@ def add_if_exists(
 
 
 def flatten_for_csv(
-    records,
-):
+    records: list[dict],
+) -> list[dict]:
 
     rows = []
 
@@ -149,7 +136,7 @@ def flatten_for_csv(
     return rows
 
 
-def main():
+def main() -> None:
 
     OUTPUT_DIR.mkdir(
         parents=True,
@@ -158,26 +145,19 @@ def main():
 
     print()
     print("=" * 88)
-
     print(
         "PATHOVERSE — UNIFIED BENCHMARK BUILDER"
     )
-
     print("=" * 88)
 
     collector = BenchmarkCollector(
         RESULTS_ROOT
     )
 
-    # ========================================================
-    # Efficiency
-    # ========================================================
-
     print()
     print(
         "FOUNDATION MODEL EFFICIENCY"
     )
-
     print("-" * 88)
 
     for path in EFFICIENCY_FILES:
@@ -188,15 +168,10 @@ def main():
             collector.add_efficiency_result,
         )
 
-    # ========================================================
-    # Retrieval
-    # ========================================================
-
     print()
     print(
         "IMAGE RETRIEVAL"
     )
-
     print("-" * 88)
 
     for path in RETRIEVAL_FILES:
@@ -207,15 +182,10 @@ def main():
             collector.add_retrieval_result,
         )
 
-    # ========================================================
-    # Classification
-    # ========================================================
-
     print()
     print(
         "PCAM CLASSIFICATION"
     )
-
     print("-" * 88)
 
     for path in CLASSIFICATION_FILES:
@@ -226,15 +196,10 @@ def main():
             collector.add_classification_result,
         )
 
-    # ========================================================
-    # MIL
-    # ========================================================
-
     print()
     print(
         "WSI MIL PROTOTYPE"
     )
-
     print("-" * 88)
 
     for path in MIL_FILES:
@@ -245,15 +210,22 @@ def main():
             collector.add_mil_result,
         )
 
-    # ========================================================
-    # Records
-    # ========================================================
+    print()
+    print(
+        "VALIDATING BENCHMARK COLLECTION..."
+    )
+
+    # Strict validation for the actual production
+    # PathoVerse benchmark.
+    collector.validate(
+        require_production_models=True
+    )
 
     records = collector.to_list()
 
-    # ========================================================
-    # Rankings
-    # ========================================================
+    print(
+        f"✓ Validated {len(records)} benchmark records"
+    )
 
     classification_ranking = (
         build_classification_ranking(
@@ -279,12 +251,7 @@ def main():
         )
     )
 
-    # ========================================================
-    # Unified JSON
-    # ========================================================
-
     unified = {
-
         "schema_version": "1.0",
 
         "project": "PathoVerse AI",
@@ -296,10 +263,24 @@ def main():
             "and WSI MIL prototype."
         ),
 
+        "model_id_convention": {
+            "canonical": True,
+
+            "description": (
+                "model_id values use canonical "
+                "PathoVerse model identifiers."
+            ),
+
+            "models": {
+                "vit-b-16": "ViT-B/16",
+                "gigapath-flash": "GigaPath-Flash",
+                "conch": "CONCH",
+            },
+        },
+
         "records": records,
 
         "rankings": {
-
             "classification": (
                 classification_ranking
             ),
@@ -311,11 +292,9 @@ def main():
             "retrieval": (
                 retrieval_ranking
             ),
-
         },
 
         "model_summary": model_summary,
-
     }
 
     json_path = (
@@ -323,9 +302,9 @@ def main():
         / "foundation_model_benchmark.json"
     )
 
-    with open(
-        json_path,
+    with json_path.open(
         "w",
+        encoding="utf-8",
     ) as f:
 
         json.dump(
@@ -333,10 +312,6 @@ def main():
             f,
             indent=2,
         )
-
-    # ========================================================
-    # CSV
-    # ========================================================
 
     csv_rows = flatten_for_csv(
         records
@@ -348,16 +323,13 @@ def main():
     )
 
     fieldnames = [
-
         "model",
         "model_id",
         "task",
         "embedding_dimension",
-
         "dataset",
         "split",
         "samples",
-
         "accuracy",
         "auroc",
         "f1",
@@ -365,27 +337,21 @@ def main():
         "recall",
         "sensitivity",
         "specificity",
-
         "recall_at_1",
         "recall_at_5",
         "recall_at_10",
-
         "latency_ms",
         "throughput",
         "gpu_memory_mb",
-
         "inference_time_sec",
-
         "status",
-
         "metadata_source",
-
     ]
 
-    with open(
-        csv_path,
+    with csv_path.open(
         "w",
         newline="",
+        encoding="utf-8",
     ) as f:
 
         writer = csv.DictWriter(
@@ -400,17 +366,11 @@ def main():
             csv_rows
         )
 
-    # ========================================================
-    # Console leaderboard
-    # ========================================================
-
     print()
     print("=" * 100)
-
     print(
         "PATHOVERSE — CLASSIFICATION LEADERBOARD"
     )
-
     print("=" * 100)
 
     print(
@@ -439,17 +399,11 @@ def main():
             f"{row['recall']:<12.4f}"
         )
 
-    # ========================================================
-    # Efficiency leaderboard
-    # ========================================================
-
     print()
     print("=" * 100)
-
     print(
         "PATHOVERSE — EFFICIENCY LEADERBOARD"
     )
-
     print("=" * 100)
 
     print(
@@ -474,17 +428,11 @@ def main():
             f"{row['gpu_memory_mb']:<14.2f}"
         )
 
-    # ========================================================
-    # Retrieval leaderboard
-    # ========================================================
-
     print()
     print("=" * 100)
-
     print(
         "PATHOVERSE — RETRIEVAL LEADERBOARD"
     )
-
     print("=" * 100)
 
     print(
@@ -507,22 +455,16 @@ def main():
             f"{row['recall_at_10']:<12.4f}"
         )
 
-    # ========================================================
-    # Final
-    # ========================================================
-
     print()
     print("=" * 100)
-
     print(
         "UNIFIED BENCHMARK COMPLETE"
     )
-
     print("=" * 100)
 
     foundation_models = sorted(
         {
-            record["model"]
+            record["model_id"]
             for record in records
             if record["task"]
             != "wsi_mil_prototype"
@@ -535,12 +477,14 @@ def main():
     )
 
     print(
-        "Benchmark records:",
-        len(records),
+        "Canonical models:",
+        ", ".join(
+            foundation_models
+        ),
     )
 
     print(
-        "Total records:",
+        "Benchmark records:",
         len(records),
     )
 

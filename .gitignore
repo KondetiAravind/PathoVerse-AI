@@ -45,3 +45,4 @@ data/metadata/wsi/
 
 # Python packaging metadata
 *.egg-info/
+.env.production
