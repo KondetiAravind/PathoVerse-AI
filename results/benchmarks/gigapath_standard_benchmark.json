@@ -1,0 +1,11 @@
+{
+  "model_name": "GigaPath-Flash",
+  "device": "cuda",
+  "num_samples": 45,
+  "batch_size": 8,
+  "embedding_dim": 384,
+  "total_time_seconds": 0.030333300994243473,
+  "average_latency_ms": 0.6740733554276327,
+  "throughput_samples_per_second": 1483.5180651304622,
+  "peak_gpu_memory_mb": 131.72607421875
+}

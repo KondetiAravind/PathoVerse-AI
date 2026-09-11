@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "model": {
+    "name": "CONCH",
+    "canonical_model_id": "conch",
+    "model_id": "conch_ViT-B-16",
+    "embedding_dim": 512,
+    "input_size": 448,
+    "modality": "vision-language"
+  },
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 4500 Blackwell",
+    "device": "cuda:0",
+    "pytorch": "2.11.0+cu128"
+  },
+  "benchmark": {
+    "tiles": 45,
+    "batch_size": 4,
+    "load_time_sec": 4.197648258996196,
+    "total_inference_time_sec": 0.3847142839804292,
+    "latency_ms_per_tile": 8.549206310676203,
+    "throughput_tiles_per_sec": 116.96992254722,
+    "peak_gpu_memory_mb": 1638.55908203125
+  },
+  "validation": {
+    "embedding_shape": [
+      45,
+      512
+    ],
+    "finite": true,
+    "normalized": true
+  }
+}

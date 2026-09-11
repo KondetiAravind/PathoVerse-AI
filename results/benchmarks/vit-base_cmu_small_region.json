@@ -1,0 +1,13 @@
+{
+  "model_name": "vit-base",
+  "model_id": "google/vit-base-patch16-224-in21k",
+  "device": "cuda",
+  "gpu": "NVIDIA RTX PRO 4500 Blackwell",
+  "num_tiles": 45,
+  "batch_size": 8,
+  "embedding_dimension": 768,
+  "total_time_seconds": 0.45287349296268076,
+  "average_latency_ms_per_tile": 10.063855399170683,
+  "throughput_tiles_per_second": 99.36549764838686,
+  "peak_gpu_memory_mb": 398.697265625
+}

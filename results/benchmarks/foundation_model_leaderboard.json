@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "benchmark_protocol": {
+    "description": "Standardized fresh-process single-model inference benchmark over the same extracted pathology tile set.",
+    "dataset": "CMU-1-Small-Region",
+    "tiles": 45,
+    "hardware": "NVIDIA RTX PRO 4500 Blackwell",
+    "device": "cuda:0"
+  },
+  "models": [
+    {
+      "model": "ViT-B/16",
+      "model_id": "ViT-B/16",
+      "embedding_dim": 768,
+      "latency_ms_per_tile": 1.742675133411669,
+      "throughput_tiles_per_sec": 573.8304178600865,
+      "peak_gpu_memory_mb": 396.4208984375,
+      "tiles": 45,
+      "batch_size": 8,
+      "total_time_sec": 0.07842038100352511,
+      "source_file": "vit_standard_benchmark.json",
+      "throughput_speedup_vs_vit": 1.0,
+      "latency_ratio_vs_vit": 1.0,
+      "memory_ratio_vs_vit": 1.0,
+      "memory_reduction_vs_vit_percent": 0.0
+    },
+    {
+      "model": "GigaPath-Flash",
+      "model_id": "GigaPath-Flash",
+      "embedding_dim": 384,
+      "latency_ms_per_tile": 0.6740733554276327,
+      "throughput_tiles_per_sec": 1483.5180651304622,
+      "peak_gpu_memory_mb": 131.72607421875,
+      "tiles": 45,
+      "batch_size": 8,
+      "total_time_sec": 0.030333300994243473,
+      "source_file": "gigapath_standard_benchmark.json",
+      "throughput_speedup_vs_vit": 2.585290042069849,
+      "latency_ratio_vs_vit": 0.3868037952133891,
+      "memory_ratio_vs_vit": 0.33228842055994184,
+      "memory_reduction_vs_vit_percent": 66.77115794400581
+    },
+    {
+      "model": "CONCH",
+      "model_id": "conch_ViT-B-16",
+      "embedding_dim": 512,
+      "latency_ms_per_tile": 8.407817822363642,
+      "throughput_tiles_per_sec": 118.93692526735501,
+      "peak_gpu_memory_mb": 1638.55908203125,
+      "tiles": 45,
+      "batch_size": 4,
+      "total_time_sec": 0.37835180200636387,
+      "source_file": "conch_standard_benchmark.json",
+      "throughput_speedup_vs_vit": 0.2072684221078616,
+      "latency_ratio_vs_vit": 4.824661614298411,
+      "memory_ratio_vs_vit": 4.133382191730203,
+      "memory_reduction_vs_vit_percent": -313.3382191730203
+    }
+  ],
+  "rankings": {
+    "fastest_throughput": "GigaPath-Flash",
+    "lowest_latency": "GigaPath-Flash",
+    "lowest_gpu_memory": "GigaPath-Flash"
+  },
+  "baseline": {
+    "model": "ViT-B/16",
+    "throughput_speedup": {
+      "ViT-B/16": 1.0,
+      "GigaPath-Flash": 2.585290042069849,
+      "CONCH": 0.2072684221078616
+    },
+    "latency_ratio": {
+      "ViT-B/16": 1.0,
+      "GigaPath-Flash": 0.3868037952133891,
+      "CONCH": 4.824661614298411
+    },
+    "memory_ratio": {
+      "ViT-B/16": 1.0,
+      "GigaPath-Flash": 0.33228842055994184,
+      "CONCH": 4.133382191730203
+    },
+    "memory_reduction_percent": {
+      "ViT-B/16": 0.0,
+      "GigaPath-Flash": 66.77115794400581,
+      "CONCH": -313.3382191730203
+    }
+  }
+}

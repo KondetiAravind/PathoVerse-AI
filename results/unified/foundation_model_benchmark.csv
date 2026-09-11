@@ -1,0 +1,11 @@
+model,model_id,task,embedding_dimension,dataset,split,samples,accuracy,auroc,f1,precision,recall,sensitivity,specificity,recall_at_1,recall_at_5,recall_at_10,latency_ms,throughput,gpu_memory_mb,inference_time_sec,status,metadata_source
+ViT-B/16,vit-b-16,foundation_efficiency,768,WSI,benchmark,45,,,,,,,,,,,1.742675133411669,573.8304178600865,396.4208984375,,completed,
+GigaPath-Flash,gigapath-flash,foundation_efficiency,384,WSI,benchmark,45,,,,,,,,,,,0.6740733554276327,1483.5180651304622,131.72607421875,,completed,
+CONCH,conch,foundation_efficiency,512,WSI,benchmark,45,,,,,,,,,,,8.549206310676203,116.96992254722,1638.55908203125,,completed,
+ViT-B/16,vit-b-16,image_retrieval,768,WSI,benchmark,45,,,,,,,,0.051758884390463354,0.20950967161493478,0.35626630679262256,,,,,completed,/home/ub/sam/aravind/my_projects/PathoVerse_AI/results/retrieval/vit_b_16_retrieval_evaluation.json
+GigaPath-Flash,gigapath-flash,image_retrieval,384,WSI,benchmark,45,,,,,,,,0.042213225371120114,0.18914080071974806,0.3209536662168241,,,,,completed,/home/ub/sam/aravind/my_projects/PathoVerse_AI/results/retrieval/gigapath_flash_retrieval_evaluation.json
+CONCH,conch,image_retrieval,512,WSI,benchmark,45,,,,,,,,0.04734143049932524,0.21106612685560053,0.3448762932973459,,,,,completed,/home/ub/sam/aravind/my_projects/PathoVerse_AI/results/retrieval/conch_retrieval_evaluation.json
+ViT-B/16,vit-b-16,classification,768,PatchCamelyon,test,200,0.82,0.9146634615384616,0.8181818181818182,0.8617021276595744,0.7788461538461539,,,,,,,,,,completed,
+GigaPath-Flash,gigapath-flash,classification,384,PatchCamelyon,test,200,0.92,0.9748597756410257,0.9230769230769231,0.9230769230769231,0.9230769230769231,,,,,,,,,,completed,
+CONCH,conch,classification,512,PatchCamelyon,test,200,0.805,0.9091546474358975,0.8115942028985508,0.8155339805825242,0.8076923076923077,,,,,,,,,,completed,
+GigaPath-Flash,gigapath-flash,wsi_mil_prototype,,WSI,prototype,,,,,,,,,,,,,,,,prototype,/home/ub/sam/aravind/my_projects/PathoVerse_AI/results/mil/CMU-1-Small-Region_gigapath_flash_mil.json

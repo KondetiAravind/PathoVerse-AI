@@ -258,10 +258,6 @@ class BenchmarkCollector:
             for key, value in MODEL_ALIASES.items()
         }
 
-        # ----------------------------------------------------
-        # Exact canonical / alias matching
-        # ----------------------------------------------------
-
         for candidate in candidates:
 
             if candidate is None:
@@ -281,10 +277,6 @@ class BenchmarkCollector:
             if lowered in alias_lookup:
                 return alias_lookup[lowered]
 
-        # ----------------------------------------------------
-        # Descriptive legacy matching
-        # ----------------------------------------------------
-
         for candidate in candidates:
 
             if candidate is None:
@@ -303,14 +295,6 @@ class BenchmarkCollector:
                 or "vision transformer" in lowered
             ):
                 return "vit-b-16"
-
-        # ----------------------------------------------------
-        # Artifact filename fallback.
-        #
-        # Required for:
-        #
-        # CMU-1-Small-Region_gigapath_flash_mil.json
-        # ----------------------------------------------------
 
         if source_path is not None:
 
@@ -336,10 +320,6 @@ class BenchmarkCollector:
                 or "vit" in filename
             ):
                 return "vit-b-16"
-
-        # ----------------------------------------------------
-        # Unknown IDs remain allowed for generic tests.
-        # ----------------------------------------------------
 
         fallback = _clean_string(model_id)
 
@@ -515,6 +495,19 @@ class BenchmarkCollector:
         ):
             model_data = {}
 
+        # Current PathoVerse foundation benchmark artifacts
+        # store runtime metrics under `benchmark`.
+        benchmark_data = data.get(
+            "benchmark",
+            {},
+        )
+
+        if not isinstance(
+            benchmark_data,
+            dict,
+        ):
+            benchmark_data = {}
+
         model_id = _first_not_none(
             data.get("canonical_model_id"),
             data.get("model_id"),
@@ -553,6 +546,7 @@ class BenchmarkCollector:
                     data.get("samples"),
                     data.get("num_samples"),
                     data.get("tile_count"),
+                    benchmark_data.get("tiles"),
                 )
             ),
             embedding_dimension=_to_int(
@@ -568,6 +562,7 @@ class BenchmarkCollector:
                     data.get("latency_ms"),
                     data.get("average_latency_ms"),
                     data.get("mean_latency_ms"),
+                    benchmark_data.get("latency_ms_per_tile"),
                 )
             ),
             throughput=_to_float(
@@ -575,12 +570,14 @@ class BenchmarkCollector:
                     data.get("throughput"),
                     data.get("throughput_samples_per_second"),
                     data.get("tiles_per_second"),
+                    benchmark_data.get("throughput_tiles_per_sec"),
                 )
             ),
             gpu_memory_mb=_to_float(
                 _first_not_none(
                     data.get("gpu_memory_mb"),
                     data.get("peak_gpu_memory_mb"),
+                    benchmark_data.get("peak_gpu_memory_mb"),
                 )
             ),
             status=_clean_string(
@@ -635,27 +632,6 @@ class BenchmarkCollector:
             model_data.get("model_name"),
         )
 
-        # ----------------------------------------------------
-        # CURRENT PATHOVERSE RETRIEVAL SCHEMA
-        #
-        # {
-        #     "schema_version": 1.0,
-        #     "model": {...},
-        #     "dataset": {...},
-        #     "protocol": {...},
-        #     "overall": {
-        #         "recall_at_1": ...,
-        #         "recall_at_5": ...,
-        #         "recall_at_10": ...
-        #     },
-        #     "per_category": {...},
-        #     "per_query": [...]
-        # }
-        #
-        # IMPORTANT:
-        # Use `overall` directly. Do NOT average per_query.
-        # ----------------------------------------------------
-
         overall = data.get(
             "overall",
             {},
@@ -666,10 +642,6 @@ class BenchmarkCollector:
             dict,
         ):
             overall = {}
-
-        # ----------------------------------------------------
-        # Backward-compatible fallback containers.
-        # ----------------------------------------------------
 
         metrics = data.get(
             "metrics",
@@ -708,7 +680,6 @@ class BenchmarkCollector:
             *keys: str,
         ) -> float | None:
 
-            # Current authoritative schema.
             for key in keys:
 
                 converted = _to_float(
@@ -718,7 +689,6 @@ class BenchmarkCollector:
                 if converted is not None:
                     return converted
 
-            # Legacy fallback.
             for container in (
                 metrics,
                 evaluation,
@@ -736,10 +706,6 @@ class BenchmarkCollector:
                         return converted
 
             return None
-
-        # ----------------------------------------------------
-        # Dataset information
-        # ----------------------------------------------------
 
         dataset_data = data.get(
             "dataset",
@@ -776,10 +742,6 @@ class BenchmarkCollector:
 
             samples = None
 
-        # ----------------------------------------------------
-        # Protocol / split
-        # ----------------------------------------------------
-
         protocol = data.get(
             "protocol",
             {},
@@ -801,10 +763,6 @@ class BenchmarkCollector:
             or "benchmark"
         )
 
-        # ----------------------------------------------------
-        # Metadata
-        # ----------------------------------------------------
-
         metadata = {
             "source_file": (
                 str(source_path)
@@ -815,10 +773,6 @@ class BenchmarkCollector:
                 "schema_version"
             ),
         }
-
-        # ----------------------------------------------------
-        # Create benchmark record
-        # ----------------------------------------------------
 
         return self.add(
             model={
@@ -1064,15 +1018,6 @@ class BenchmarkCollector:
             model_data.get("name"),
             model_data.get("model_name"),
         )
-
-        # ----------------------------------------------------
-        # Current MIL artifact may contain neither model_id
-        # nor model_name.
-        #
-        # Recover the model from:
-        #
-        # CMU-1-Small-Region_gigapath_flash_mil.json
-        # ----------------------------------------------------
 
         if (
             model_id is None

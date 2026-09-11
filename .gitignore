@@ -1,41 +1,55 @@
+# ============================================================
+# PathoVerse AI - Git Ignore
+# ============================================================
+
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
 .pytest_cache/
 .coverage
 htmlcov/
 
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 env/
 
-# Environment variables
+# Environment / secrets
 .env
+.env.*
+!.env.example
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
 
 # Large datasets
 data/raw/
 data/processed/
 
-# Model weights
-/models/
+# Downloaded / generated model weights
+models/**/*
+!models/
+!models/pcam_classification/
+!models/pcam_classification/*.pt
 
-# Experiment tracking
+# Third-party repositories
+/external/
+
+# Experiment tracking / runtime databases
 mlruns/
 mlflow.db
 
-# Runtime outputs
-results/
+# Runtime logs
+logs/
+*.log
 
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-
-# External third-party repositories
-/external/
+# Generated temporary results
+# Individual final benchmark artifacts are force-added to Git.
+results/tmp/
+results/cache/
 
 # Generated embedding metadata
 data/metadata/embeddings/
@@ -43,6 +57,20 @@ data/metadata/patchcamelyon/*_embeddings.json
 data/metadata/patchcamelyon/*_embedding_summary.json
 data/metadata/wsi/
 
-# Python packaging metadata
-*.egg-info/
-.env.production
+# Frontend / IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary backups
+*.backup
+*.bak
+*.tmp
+*~
+
+# Python tooling
+.ruff_cache/
+.mypy_cache/

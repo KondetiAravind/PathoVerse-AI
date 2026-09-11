@@ -1,0 +1,36 @@
+{
+  "dataset": {
+    "slide": "CMU-1-Small-Region",
+    "num_tiles": 45,
+    "batch_size": 8
+  },
+  "models": [
+    {
+      "model_name": "vit_base_patch16_224",
+      "device": "cuda",
+      "num_samples": 45,
+      "batch_size": 8,
+      "embedding_dim": 768,
+      "total_time_seconds": 0.07860525499563664,
+      "average_latency_ms": 1.746783444347481,
+      "throughput_samples_per_second": 572.4808093618924,
+      "peak_gpu_memory_mb": 396.4208984375
+    },
+    {
+      "model_name": "GigaPath-Flash",
+      "device": "cuda",
+      "num_samples": 45,
+      "batch_size": 8,
+      "embedding_dim": 384,
+      "total_time_seconds": 0.030207710980903357,
+      "average_latency_ms": 0.6712824662422969,
+      "throughput_samples_per_second": 1489.6858629390356,
+      "peak_gpu_memory_mb": 466.34228515625
+    }
+  ],
+  "comparison": {
+    "throughput_speedup_x": 2.602158602660398,
+    "latency_reduction_x": 2.602158602660398,
+    "gpu_memory_reduction_percent": -17.638168672324394
+  }
+}

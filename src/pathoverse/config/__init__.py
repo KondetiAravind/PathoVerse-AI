@@ -3,26 +3,34 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import field_validator
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+# ==========================================================
+# PROJECT ROOT
+# ==========================================================
+
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
+
+# ==========================================================
+# SETTINGS
+# ==========================================================
 
 class Settings(BaseSettings):
     """
     Central application configuration.
 
     Environment variables use the PATHOVERSE_ prefix.
+
     Example:
         PATHOVERSE_PORT=9000
     """
 
     model_config = SettingsConfigDict(
         env_prefix="PATHOVERSE_",
-        env_file=".env",
-        env_file_encoding="utf-8",
+        env_file=None,
         case_sensitive=False,
         extra="ignore",
     )
@@ -32,14 +40,28 @@ class Settings(BaseSettings):
     # ------------------------------------------------------
 
     app_name: str = "PathoVerse AI"
+
     app_version: str = "0.4.0"
-    environment: str = "development"
+
+    # PATHOVERSE_ENV is intentionally mapped to this field.
+    environment: str = Field(
+        default="development",
+        validation_alias="PATHOVERSE_ENV",
+    )
+
+    # API key used in production API authentication.
+    #
+    # IMPORTANT:
+    # Keep the real key in .env.production.
+    # Never commit the real key to Git.
+    api_key: str = ""
 
     # ------------------------------------------------------
     # Server
     # ------------------------------------------------------
 
     host: str = "0.0.0.0"
+
     port: int = 8000
 
     # ------------------------------------------------------
@@ -65,13 +87,17 @@ class Settings(BaseSettings):
 
     cors_allow_headers: str = "*"
 
+    cors_origin_regex: str = r"https://.*\.vercel\.app"
+
     # ------------------------------------------------------
     # Project directories
     # ------------------------------------------------------
 
     project_root: Path = PROJECT_ROOT
 
-    data_root: Path = PROJECT_ROOT / "data"
+    data_root: Path = (
+        PROJECT_ROOT / "data"
+    )
 
     raw_root: Path = (
         PROJECT_ROOT / "data" / "raw"
@@ -99,7 +125,10 @@ class Settings(BaseSettings):
 
     @field_validator("environment")
     @classmethod
-    def validate_environment(cls, value: str) -> str:
+    def validate_environment(
+        cls,
+        value: str,
+    ) -> str:
         value = value.strip().lower()
 
         allowed = {
@@ -119,7 +148,10 @@ class Settings(BaseSettings):
 
     @field_validator("log_level")
     @classmethod
-    def validate_log_level(cls, value: str) -> str:
+    def validate_log_level(
+        cls,
+        value: str,
+    ) -> str:
         value = value.strip().upper()
 
         allowed = {
@@ -139,7 +171,7 @@ class Settings(BaseSettings):
         return value
 
     # ------------------------------------------------------
-    # Parsed configuration helpers
+    # Parsed CORS helpers
     # ------------------------------------------------------
 
     @property
@@ -167,12 +199,17 @@ class Settings(BaseSettings):
         ]
 
 
+# ==========================================================
+# CACHED SETTINGS
+# ==========================================================
+
 @lru_cache
 def get_settings() -> Settings:
     """
-    Return cached application settings.
+    Return the cached application settings.
 
     Caching ensures that every module uses the same
     configuration instance during the application lifecycle.
     """
+
     return Settings()

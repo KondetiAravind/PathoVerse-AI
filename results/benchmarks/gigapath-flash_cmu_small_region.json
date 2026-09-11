@@ -1,0 +1,16 @@
+{
+  "model": "GigaPath-Flash",
+  "model_id": "hf_hub:prov-gigapath/prov-gigapath-flash",
+  "slide": "CMU-1-Small-Region",
+  "tiles": 45,
+  "embedding_dim": 384,
+  "batch_size": 8,
+  "total_time_seconds": 0.1726329309749417,
+  "latency_ms_per_tile": 3.836287354998704,
+  "throughput_tiles_per_second": 260.66869018479395,
+  "peak_gpu_memory_mb": 136.48779296875,
+  "embedding_shape": [
+    45,
+    384
+  ]
+}

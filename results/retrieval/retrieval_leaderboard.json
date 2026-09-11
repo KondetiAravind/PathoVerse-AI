@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "evaluation": "image_to_image",
+  "ground_truth_status": "candidate_pending_verification",
+  "models": [
+    {
+      "model": "ViT-B/16",
+      "embedding_dimension": 768,
+      "recall_at_1": 0.051758884390463354,
+      "recall_at_5": 0.20950967161493478,
+      "recall_at_10": 0.35626630679262256
+    },
+    {
+      "model": "CONCH",
+      "embedding_dimension": 512,
+      "recall_at_1": 0.04734143049932524,
+      "recall_at_5": 0.21106612685560053,
+      "recall_at_10": 0.3448762932973459
+    },
+    {
+      "model": "GigaPath-Flash",
+      "embedding_dimension": 384,
+      "recall_at_1": 0.042213225371120114,
+      "recall_at_5": 0.18914080071974806,
+      "recall_at_10": 0.3209536662168241
+    }
+  ]
+}

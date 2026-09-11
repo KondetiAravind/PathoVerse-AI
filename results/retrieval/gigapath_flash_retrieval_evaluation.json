@@ -1,0 +1,411 @@
+{
+  "schema_version": "1.0",
+  "model": {
+    "name": "GigaPath-Flash",
+    "embedding_file": "CMU-1-Small-Region_gigapath-flash.npy",
+    "embedding_dimension": 384
+  },
+  "dataset": {
+    "slide_id": "CMU-1-Small-Region",
+    "tiles": 45,
+    "queries": 45,
+    "ground_truth": "results/retrieval/ground_truth.json"
+  },
+  "protocol": {
+    "type": "leave_one_out_image_to_image",
+    "retrieval_k": 11,
+    "query_tile_excluded": true,
+    "evaluated_k": [
+      1,
+      5,
+      10
+    ]
+  },
+  "overall": {
+    "recall_at_1": 0.042213225371120114,
+    "recall_at_5": 0.18914080071974806,
+    "recall_at_10": 0.3209536662168241
+  },
+  "per_category": {
+    "epithelial_rich": {
+      "queries": 20,
+      "recall_at_1": 0.03421052631578947,
+      "recall_at_5": 0.1421052631578947,
+      "recall_at_10": 0.2736842105263158
+    },
+    "mixed_epithelium_stroma": {
+      "queries": 14,
+      "recall_at_1": 0.04395604395604396,
+      "recall_at_5": 0.1978021978021978,
+      "recall_at_10": 0.2692307692307692
+    },
+    "stroma_collagen_rich": {
+      "queries": 11,
+      "recall_at_1": 0.05454545454545454,
+      "recall_at_5": 0.2636363636363636,
+      "recall_at_10": 0.4727272727272727
+    }
+  },
+  "per_query": [
+    {
+      "query_tile_id": 0,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.38461538461538464,
+      "recall_at_10": 0.38461538461538464
+    },
+    {
+      "query_tile_id": 1,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.23076923076923078,
+      "recall_at_10": 0.38461538461538464
+    },
+    {
+      "query_tile_id": 2,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.38461538461538464,
+      "recall_at_10": 0.38461538461538464
+    },
+    {
+      "query_tile_id": 3,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.3076923076923077,
+      "recall_at_10": 0.46153846153846156
+    },
+    {
+      "query_tile_id": 4,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.15384615384615385,
+      "recall_at_10": 0.23076923076923078
+    },
+    {
+      "query_tile_id": 5,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.07692307692307693,
+      "recall_at_10": 0.15384615384615385
+    },
+    {
+      "query_tile_id": 6,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.15384615384615385,
+      "recall_at_10": 0.23076923076923078
+    },
+    {
+      "query_tile_id": 7,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.07692307692307693,
+      "recall_at_10": 0.15384615384615385
+    },
+    {
+      "query_tile_id": 8,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.21052631578947367,
+      "recall_at_10": 0.3684210526315789
+    },
+    {
+      "query_tile_id": 9,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 10,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.15789473684210525
+    },
+    {
+      "query_tile_id": 11,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.2631578947368421,
+      "recall_at_10": 0.3157894736842105
+    },
+    {
+      "query_tile_id": 12,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.23076923076923078,
+      "recall_at_10": 0.38461538461538464
+    },
+    {
+      "query_tile_id": 13,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.15789473684210525,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 14,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.21052631578947367,
+      "recall_at_10": 0.3157894736842105
+    },
+    {
+      "query_tile_id": 15,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.23076923076923078,
+      "recall_at_10": 0.23076923076923078
+    },
+    {
+      "query_tile_id": 16,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.15384615384615385,
+      "recall_at_10": 0.23076923076923078
+    },
+    {
+      "query_tile_id": 17,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.15789473684210525,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 18,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 19,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.15384615384615385,
+      "recall_at_10": 0.23076923076923078
+    },
+    {
+      "query_tile_id": 20,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.15789473684210525,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 21,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.21052631578947367,
+      "recall_at_10": 0.3684210526315789
+    },
+    {
+      "query_tile_id": 22,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.2,
+      "recall_at_10": 0.3
+    },
+    {
+      "query_tile_id": 23,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.07692307692307693,
+      "recall_at_5": 0.23076923076923078,
+      "recall_at_10": 0.3076923076923077
+    },
+    {
+      "query_tile_id": 24,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.05263157894736842,
+      "recall_at_10": 0.21052631578947367
+    },
+    {
+      "query_tile_id": 25,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.15789473684210525,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 26,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.21052631578947367,
+      "recall_at_10": 0.3684210526315789
+    },
+    {
+      "query_tile_id": 27,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.1,
+      "recall_at_5": 0.4,
+      "recall_at_10": 0.5
+    },
+    {
+      "query_tile_id": 28,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.1,
+      "recall_at_5": 0.2,
+      "recall_at_10": 0.6
+    },
+    {
+      "query_tile_id": 29,
+      "category": "mixed_epithelium_stroma",
+      "relevant_tile_count": 13,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0
+    },
+    {
+      "query_tile_id": 30,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.05263157894736842,
+      "recall_at_10": 0.15789473684210525
+    },
+    {
+      "query_tile_id": 31,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.3157894736842105
+    },
+    {
+      "query_tile_id": 32,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.1,
+      "recall_at_5": 0.4,
+      "recall_at_10": 0.6
+    },
+    {
+      "query_tile_id": 33,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.1,
+      "recall_at_10": 0.2
+    },
+    {
+      "query_tile_id": 34,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 35,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.3,
+      "recall_at_10": 0.5
+    },
+    {
+      "query_tile_id": 36,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.1,
+      "recall_at_5": 0.2,
+      "recall_at_10": 0.5
+    },
+    {
+      "query_tile_id": 37,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.3,
+      "recall_at_10": 0.6
+    },
+    {
+      "query_tile_id": 38,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.2631578947368421
+    },
+    {
+      "query_tile_id": 39,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.3157894736842105
+    },
+    {
+      "query_tile_id": 40,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.1,
+      "recall_at_10": 0.2
+    },
+    {
+      "query_tile_id": 41,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.1,
+      "recall_at_5": 0.3,
+      "recall_at_10": 0.7
+    },
+    {
+      "query_tile_id": 42,
+      "category": "stroma_collagen_rich",
+      "relevant_tile_count": 10,
+      "recall_at_1": 0.1,
+      "recall_at_5": 0.4,
+      "recall_at_10": 0.5
+    },
+    {
+      "query_tile_id": 43,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.0,
+      "recall_at_5": 0.10526315789473684,
+      "recall_at_10": 0.15789473684210525
+    },
+    {
+      "query_tile_id": 44,
+      "category": "epithelial_rich",
+      "relevant_tile_count": 19,
+      "recall_at_1": 0.05263157894736842,
+      "recall_at_5": 0.15789473684210525,
+      "recall_at_10": 0.3157894736842105
+    }
+  ]
+}

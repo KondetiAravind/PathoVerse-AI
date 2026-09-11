@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "task": "patchcamelyon_binary_classification",
+  "ranking_metric": "test_auroc",
+  "models": [
+    {
+      "model": "GigaPath-Flash",
+      "model_id": "gigapath_flash",
+      "embedding_dimension": 384,
+      "accuracy": 0.92,
+      "auroc": 0.9748597756410257,
+      "f1": 0.9230769230769231,
+      "precision": 0.9230769230769231,
+      "recall": 0.9230769230769231,
+      "sensitivity": 0.9230769230769231,
+      "specificity": 0.9166666666666666,
+      "rank": 1
+    },
+    {
+      "model": "ViT-B/16",
+      "model_id": "vit_b_16",
+      "embedding_dimension": 768,
+      "accuracy": 0.82,
+      "auroc": 0.9146634615384616,
+      "f1": 0.8181818181818182,
+      "precision": 0.8617021276595744,
+      "recall": 0.7788461538461539,
+      "sensitivity": 0.7788461538461539,
+      "specificity": 0.8645833333333334,
+      "rank": 2
+    },
+    {
+      "model": "CONCH",
+      "model_id": "conch",
+      "embedding_dimension": 512,
+      "accuracy": 0.805,
+      "auroc": 0.9091546474358975,
+      "f1": 0.8115942028985508,
+      "precision": 0.8155339805825242,
+      "recall": 0.8076923076923077,
+      "sensitivity": 0.8076923076923077,
+      "specificity": 0.8020833333333334,
+      "rank": 3
+    }
+  ]
+}

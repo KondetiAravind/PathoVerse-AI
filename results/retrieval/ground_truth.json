@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "dataset": {
+    "slide_id": "CMU-1-Small-Region",
+    "tile_count": 45,
+    "annotation_type": "semantic_morphology",
+    "annotation_status": "candidate_pending_verification",
+    "annotation_note": "Candidate semantic labels based on visual inspection of the tile contact sheet. These labels are for retrieval benchmarking and are not clinical/pathologist annotations."
+  },
+  "categories": {
+    "epithelial_rich": {
+      "description": "Tiles dominated by organized epithelial tissue.",
+      "relevant_tiles": [
+        8, 9, 10, 11, 13, 14,
+        17, 18, 20, 21,
+        24, 25, 26,
+        30, 31,
+        34, 38, 39, 43, 44
+      ]
+    },
+    "stroma_collagen_rich": {
+      "description": "Tiles dominated by collagenous/stromal tissue.",
+      "relevant_tiles": [
+        22, 27, 28, 32, 33,
+        35, 36, 37, 40, 41, 42
+      ]
+    },
+    "mixed_epithelium_stroma": {
+      "description": "Tiles containing substantial epithelial and stromal components.",
+      "relevant_tiles": [
+        0, 1, 2, 3, 4,
+        5, 6, 7,
+        12, 15, 16,
+        19, 23, 29
+      ]
+    }
+  },
+  "queries": {
+    "epithelial tissue": {
+      "category": "epithelial_rich"
+    },
+    "collagen-rich stromal tissue": {
+      "category": "stroma_collagen_rich"
+    },
+    "epithelial and stromal tissue": {
+      "category": "mixed_epithelium_stroma"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 "use client";
 
+import { apiFetch } from "@/lib/api";
+
 import { useEffect, useMemo, useState } from "react";
 import {
   Activity,
@@ -25,6 +27,8 @@ import {
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+
+const fetch = apiFetch;
 
 
 // ============================================================

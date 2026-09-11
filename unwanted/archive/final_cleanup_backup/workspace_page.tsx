@@ -1115,119 +1115,88 @@ export default function WorkspacePage() {
 
             <div className="relative h-[620px] overflow-hidden bg-[#02060a]">
 
-              <div className="flex h-full items-center justify-center overflow-hidden p-4">
+              {/* Clean full-slide display.
+                  No zoom, no wheel interaction, no navigation controls and
+                  no tile overlays. Tile selection is handled by the
+                  inventory / region-inspection panels below. */}
+
+              <div className="absolute inset-0 flex items-center justify-center p-6">
 
                 <div
                   className="relative max-h-full max-w-full"
                   style={{
                     aspectRatio: `${slide?.width ?? 2220} / ${slide?.height ?? 2967}`,
-                    width: "100%",
                   }}
                 >
 
-                  {/* Whole-slide image */}
+                  {/* Base WSI */}
 
                   <img
                     src={thumbnailUrl}
                     alt={selectedSlide}
                     draggable={false}
-                    className="absolute inset-0 h-full w-full select-none object-fill"
+                    className="block h-full w-full select-none object-contain"
                   />
 
-                  {/* Tissue mask */}
+
+                  {/* Generated tissue-mask artifact */}
 
                   {showMask && (
+
                     <img
                       src={tissueMaskUrl}
                       alt="Generated tissue mask"
                       draggable={false}
-                      className="absolute inset-0 h-full w-full select-none object-fill opacity-55"
+                      className="pointer-events-none absolute inset-0 h-full w-full object-contain opacity-55"
                     />
+
                   )}
 
-                  {/* Generated attention heatmap */}
+
+                  {/* Generated attention heatmap artifact */}
 
                   {showHeatmap && heatmapAvailable && (
+
                     <img
                       src={heatmapUrl}
                       alt="Generated GigaPath-Flash attention heatmap"
                       draggable={false}
-                      className="absolute inset-0 h-full w-full select-none object-fill"
+                      className="pointer-events-none absolute inset-0 h-full w-full object-contain"
                     />
+
                   )}
 
-                  {/* ================================================= */}
-                  {/* TRANSPARENT CLICKABLE TILE HITBOXES              */}
-                  {/* ================================================= */}
-
-                  {!showMask &&
-                    !showHeatmap &&
-                    tiles.map((tile) => {
-
-                      const slideWidth = slide?.width ?? 2220;
-                      const slideHeight = slide?.height ?? 2967;
-
-                      const left =
-                        (tile.x / slideWidth) * 100;
-
-                      const top =
-                        (tile.y / slideHeight) * 100;
-
-                      const width =
-                        (tile.width / slideWidth) * 100;
-
-                      const height =
-                        (tile.height / slideHeight) * 100;
-
-                      const active =
-                        tile.tile_id === selectedTile;
-
-                      return (
-                        <button
-                          key={tile.tile_id}
-                          type="button"
-                          onClick={() => selectTile(tile)}
-                          title={`Tile ${tile.tile_id} · Tissue ${percent(tile.tissue_ratio)}`}
-                          aria-label={`Select pathology tile ${tile.tile_id}`}
-                          className={`absolute transition ${
-                            active
-                              ? "z-20 border-2 border-cyan-300 bg-cyan-300/10 shadow-[0_0_12px_rgba(34,211,238,0.55)]"
-                              : "border border-transparent hover:border-cyan-300/70 hover:bg-cyan-300/[0.035]"
-                          }`}
-                          style={{
-                            left: `${left}%`,
-                            top: `${top}%`,
-                            width: `${width}%`,
-                            height: `${height}%`,
-                          }}
-                        />
-                      );
-                    })}
-
                 </div>
+
               </div>
 
-              {/* Viewer information */}
 
-              <div className="pointer-events-none absolute bottom-3 left-3 right-3 flex items-center justify-between">
+              {/* Viewer mode indicator */}
 
-                <div className="rounded-md border border-slate-800 bg-slate-950/85 px-3 py-2 text-[9px] text-slate-500">
-                  {!showMask && !showHeatmap
-                    ? "Click a tissue region to select a tile"
-                    : showMask
-                    ? "Tissue mask view"
-                    : "Attention heatmap view"}
+              <div className="absolute left-4 top-4 z-20 rounded-md border border-slate-800 bg-slate-950/90 px-3 py-2 text-[9px] leading-4 text-slate-500">
+
+                <div className="font-semibold text-slate-400">
+                  WSI Viewer
                 </div>
 
-                {!showMask && !showHeatmap && selectedTileData && (
-                  <div className="rounded-md border border-cyan-500/20 bg-slate-950/90 px-3 py-2 text-[9px] text-cyan-300">
-                    Tile #{selectedTileData.tile_id} selected
+                <div>
+                  Full-slide view · fixed display
+                </div>
+
+                {(showMask || showHeatmap) && (
+
+                  <div className="mt-1 font-semibold text-cyan-300">
+                    {showHeatmap
+                      ? "Generated attention artifact"
+                      : "Generated tissue-mask artifact"}
                   </div>
+
                 )}
 
               </div>
 
             </div>
+
 
             {/* Viewer status bar */}
 

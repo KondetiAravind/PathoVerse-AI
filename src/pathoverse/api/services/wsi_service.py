@@ -152,7 +152,7 @@ class WSIService:
         if tissue_ratio is not None:
             slide["tissue_ratio"] = tissue_ratio
 
-        slide["metadata"] = metadata
+        slide["metadata"] = self._sanitize_public_metadata(metadata)
 
         return slide
 
@@ -741,6 +741,36 @@ class WSIService:
             ),
             "tile_count": None,
         }
+
+    @classmethod
+    def _sanitize_public_metadata(
+        cls,
+        value: Any,
+    ) -> Any:
+        """Remove host filesystem paths from public API metadata."""
+        sensitive_keys = {
+            "path",
+            "filepath",
+            "file_path",
+            "source_path",
+            "source_file",
+            "absolute_path",
+            "slide_path",
+            "embedding_path",
+        }
+
+        if isinstance(value, dict):
+            output: dict[str, Any] = {}
+            for key, item in value.items():
+                if str(key).lower() in sensitive_keys:
+                    continue
+                output[key] = cls._sanitize_public_metadata(item)
+            return output
+
+        if isinstance(value, list):
+            return [cls._sanitize_public_metadata(item) for item in value]
+
+        return value
 
     # ======================================================
     # TILE NORMALIZATION

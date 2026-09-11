@@ -1,0 +1,11 @@
+{
+  "model_name": "ViT-B/16",
+  "device": "cuda",
+  "num_samples": 45,
+  "batch_size": 8,
+  "embedding_dim": 768,
+  "total_time_seconds": 0.07842038100352511,
+  "average_latency_ms": 1.742675133411669,
+  "throughput_samples_per_second": 573.8304178600865,
+  "peak_gpu_memory_mb": 396.4208984375
+}

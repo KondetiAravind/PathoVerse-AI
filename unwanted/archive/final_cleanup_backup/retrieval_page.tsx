@@ -512,8 +512,8 @@ export default function RetrievalPage() {
               <div className="overflow-hidden rounded-xl border border-slate-800 bg-black">
                 <img
                   src={tileImageUrl(
-                    selectedSlide,
-                    selectedTile
+                    selectedTileData.slide_id,
+                    selectedTileData.tile_id
                   )}
                   alt={`Query pathology tile ${selectedTileData.tile_id}`}
                   className="aspect-square w-full object-cover"

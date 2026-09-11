@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
+from pathlib import Path
 
 from pathoverse.api.schemas.analysis import (
     ClassificationRequest,
@@ -188,9 +189,10 @@ def mil_analysis(
                 "dimension",
                 0,
             ),
-            slide_embedding_path=embedding.get(
-                "path",
-                "",
+            slide_embedding_path=(
+                Path(str(embedding.get("path", ""))).name
+                if embedding.get("path")
+                else ""
             ),
             trained=mil.get(
                 "trained",
