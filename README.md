@@ -1238,7 +1238,7 @@ This project is intended for research, education and engineering experimentation
 
 ---
 
-# ⭐ If you found this project useful, consider giving it a star!
+## ⭐ If you found this project useful, consider giving it a star!
 ---
 
 <p align="center">
