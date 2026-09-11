@@ -12,6 +12,8 @@ It is designed around the challenges of digital pathology, where a single whole-
 
 ## Overview
 
+<img src="docs/screenshots/01_overview.png" width="100%">
+
 Digital pathology requires machine-learning systems to work with extremely large, high-resolution images while preserving both spatial context and computational efficiency.
 
 PathoVerse AI provides a unified environment to:
@@ -38,6 +40,13 @@ The project focuses on **engineering, evaluation, and research workflows**, rath
 # Key Features
 
 ## 1. Whole-Slide Image Analysis
+
+<img src="docs/screenshots/02_workspace_wsi_01.png" width="100%">
+<img src="docs/screenshots/02_workspace_wsi_02.png" width="100%">
+<img src="docs/screenshots/02_workspace_wsi_03.png" width="100%">
+
+### Tissue-Aware Processing
+<img src="docs/screenshots/03_workspace_tissue_mask.png" width="80%">
 
 Supports pathology WSI workflows including:
 
@@ -71,6 +80,10 @@ Extracted tiles: 45
 
 # 2. Foundation Model Evaluation
 
+<img src="docs/screenshots/06_models_01.png" width="100%">
+<img src="docs/screenshots/06_models_02.png" width="100%">
+
+
 PathoVerse AI provides a common interface for evaluating different vision and vision-language foundation models.
 
 Currently evaluated models include:
@@ -88,6 +101,9 @@ The platform uses a unified adapter/registry architecture so models can be evalu
 ---
 
 # 3. Pathology Classification
+
+<img src="docs/screenshots/07_analysis_classification_01.png" width="100%">
+<img src="docs/screenshots/07_analysis_classification_02.png" width="100%">
 
 Patch-level classification experiments were performed using the **PatchCamelyon (PCam)** dataset.
 
@@ -207,6 +223,9 @@ Attention Sum ≈ 1.0
 
 The current MIL head is explicitly treated as an **untrained/prototype head**.
 
+### WSI Attention Visualization
+<img src="docs/screenshots/04_mil_attention_heatmap.png" width="90%">
+
 Therefore, the displayed slide-level probability is an engineering demonstration of the pipeline and attention mechanism rather than a trained clinical prediction.
 
 ---
@@ -240,6 +259,17 @@ This allows the system to visualize which regions contributed most strongly to t
 ---
 
 # 7. Image Retrieval
+
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="docs/screenshots/08_retrieval_01.png" width="100%">
+</td>
+<td width="50%" align="center">
+<img src="docs/screenshots/08_retrieval_02.png" width="100%">
+</td>
+</tr>
+</table>
 
 PathoVerse AI provides embedding-based pathology tile retrieval.
 
@@ -295,6 +325,9 @@ CONCH produced the strongest Recall@5 in the current evaluation, while ViT-B/16 
 
 # 8. Interactive Pathology Workspace
 
+### Tile-Level Exploration
+<img src="docs/screenshots/05_workspace_tile_selection.png" width="90%">
+
 The web application provides an interactive pathology workspace for exploring:
 
 * Whole-slide thumbnails
@@ -313,6 +346,12 @@ The viewer is intentionally designed as a static pathology workspace rather than
 ---
 
 # 9. Benchmark Dashboard
+
+<img src="docs/screenshots/09_benchmarks_01.png" width="100%">
+<img src="docs/screenshots/09_benchmarks_02.png" width="100%">
+<img src="docs/screenshots/09_benchmarks_03.png" width="100%">
+<img src="docs/screenshots/09_benchmarks_04.png" width="100%">
+<img src="docs/screenshots/09_benchmarks_05.png" width="100%">
 
 The benchmark interface provides a unified view of foundation-model performance.
 
@@ -358,6 +397,11 @@ and include machine-readable JSON/CSV results.
 ---
 
 # 10. Analytics
+
+<img src="docs/screenshots/10_analytics_01.png" width="100%">
+<img src="docs/screenshots/10_analytics_02.png" width="100%">
+<img src="docs/screenshots/10_analytics_03.png" width="100%">
+<img src="docs/screenshots/10_analytics_04.png" width="100%">
 
 The analytics interface provides an engineering-oriented view of:
 
@@ -720,6 +764,9 @@ http://localhost:3000
 ---
 
 # API Endpoints
+
+### Interactive API Documentation
+<img src="docs/screenshots/11_api_docs.png" width="90%">
 
 The FastAPI backend exposes endpoints for:
 
@@ -1187,8 +1234,20 @@ Project:
 
 # License
 
-This project is intended for research, education, and engineering experimentation.
+This project is intended for research, education and engineering experimentation.
 
-See `LICENSE` for the applicable license terms.
+---
 
-````
+# ⭐ If you found this project useful, consider giving it a star!
+---
+
+<p align="center">
+  <strong>PathoVerse AI — Multimodal Foundation Model Platform for Whole-Slide Pathology Analysis & Evaluation</strong>
+</p>
+
+<p align="center">
+  © 2026 Kondeti Aravind
+</p>
+
+
+
